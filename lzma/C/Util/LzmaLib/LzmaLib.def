@@ -1,0 +1,14 @@
+EXPORTS
+  LzmaCompress
+  LzmaUncompress
+  LzmaEnc_Create
+	LzmaEncProps_Init
+	LzmaEnc_SetProps
+	LzmaEnc_WriteProperties
+	LzmaEnc_Encode
+	LzmaEnc_Destroy
+
+	LzmaDec_Allocate
+	LzmaDec_Init
+	LzmaDec_DecodeToBuf
+	LzmaDec_Free

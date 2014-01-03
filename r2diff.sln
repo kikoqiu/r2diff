@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "r2diff", "r2diff\r2diff.vcxproj", "{EEABB924-CFFC-411F-96B0-9A282111832E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LzmaLib", "lzma\C\Util\LzmaLib\LzmaLib.vcxproj", "{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug1|Win32 = Debug1|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEABB924-CFFC-411F-96B0-9A282111832E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EEABB924-CFFC-411F-96B0-9A282111832E}.Debug|Win32.Build.0 = Debug|Win32
+		{EEABB924-CFFC-411F-96B0-9A282111832E}.Debug|Win32.Deploy.0 = Debug|Win32
+		{EEABB924-CFFC-411F-96B0-9A282111832E}.Debug1|Win32.ActiveCfg = Debug1|Win32
+		{EEABB924-CFFC-411F-96B0-9A282111832E}.Debug1|Win32.Build.0 = Debug1|Win32
+		{EEABB924-CFFC-411F-96B0-9A282111832E}.Debug1|Win32.Deploy.0 = Debug1|Win32
+		{EEABB924-CFFC-411F-96B0-9A282111832E}.Release|Win32.ActiveCfg = Release|Win32
+		{EEABB924-CFFC-411F-96B0-9A282111832E}.Release|Win32.Build.0 = Release|Win32
+		{EEABB924-CFFC-411F-96B0-9A282111832E}.Release|Win32.Deploy.0 = Release|Win32
+		{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}.Debug|Win32.Build.0 = Debug|Win32
+		{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}.Debug|Win32.Deploy.0 = Debug|Win32
+		{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}.Debug1|Win32.ActiveCfg = Debug1|Win32
+		{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}.Debug1|Win32.Build.0 = Debug1|Win32
+		{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}.Debug1|Win32.Deploy.0 = Debug1|Win32
+		{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}.Release|Win32.ActiveCfg = Release|Win32
+		{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}.Release|Win32.Build.0 = Release|Win32
+		{2C01A2E9-AB30-4507-846B-3C8BCE3E9166}.Release|Win32.Deploy.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
