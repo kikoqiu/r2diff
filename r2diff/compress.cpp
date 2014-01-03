@@ -29,6 +29,7 @@ static ISzAlloc SzAllocForLzma = { &AllocForLzma, &FreeForLzma };
 
 struct MyInStream
 {
+  ISeqInStream SeqInStream;
   Pipe &pipe;
 } ;
 
@@ -78,7 +79,7 @@ void CompressInc(Pipe& pip,std::ostream *outfile)
 
   outfile->write(buf,LZMA_PROPS_SIZE);
 
-  MyInStream inStream = { pip};
+  MyInStream inStream = { &InStream_Read,pip};
   MyOutStream outStream = { &OutStream_Write, outfile };
 
   res = LzmaEnc_Encode(enc,
@@ -96,6 +97,11 @@ void DecodeToPipe(ifstream &difffile,Pipe &pipe){
 		int64_t difflen=difffile.tellg().seekpos();
 		difffile.seekg(0,difffile.beg);
 		cerr<<"Diff file length:"<<difflen<<endl;
+
+		if(difflen<LZMA_PROPS_SIZE){
+			pipe.Close(false,true);
+			return ;
+		}
 
 		CLzmaDec dec;  
 		LzmaDec_Construct(&dec);
@@ -146,6 +152,8 @@ void DecodeToPipe(ifstream &difffile,Pipe &pipe){
 			}
 			if(bufleft!=0)__asm int 3;
 			difffile.read((char*)inbuf,min(left,buflen));
+			if(!difffile)break;
+
 			bufleft=(unsigned)difffile.gcount();
 			inbufread+=bufleft;	
 			left=difflen-inbufread;					

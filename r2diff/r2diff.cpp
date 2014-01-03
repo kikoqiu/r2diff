@@ -490,12 +490,14 @@ int decode(_TCHAR *noldfile,_TCHAR* ndifffile,_TCHAR* nnewfile){
 		cerr<<"Fleft :"<<(double)fleft<<endl;
 		delete[] outbuf;
 		delete[] charbuf;
-	}
-	cerr<<"Exiting ... "<<endl;
-	cerr.flush();
-	th.join();
 
-	Coder::pipe.Close();
+		
+
+		th.join();
+		Coder::pipe.Close();
+		cerr<<"Exiting ... "<<endl;
+		if(fleft!=0)return -1;
+	}		
 	return 0;
 }
 
@@ -521,27 +523,31 @@ int fcmp(_TCHAR* src,_TCHAR* dst){
 		return -1;
 	}
 
-	int64_t len=min(oldlen,newlen);
+	int64_t len=oldlen;
 	char obuf[102400],nbuf[102400];
-	for(int64_t i=0;i<len;++i){
+
+	int totalread=0;
+	while(oldfile && newfile){
 		oldfile.read(obuf,sizeof(obuf));
 		newfile.read(nbuf,sizeof(obuf));
-		if((!oldfile || !newfile)){			
-			return -1;
-		}
-		int len=(int)oldfile.gcount();
-		int newlen=(int)newfile.gcount();
-		if(len!=newlen){
+		
+		int roldlen=(int)oldfile.gcount();
+		int rnewlen=(int)newfile.gcount();
+		if(roldlen!=rnewlen){
 			cout<<"Len not equal!!"<<endl;
 			return -1;
 		}
 
-		if(memcmp(obuf,nbuf,min(sizeof(obuf),len))!=0){
-			cout<<endl<<std::setiosflags(ios::fixed)<<std::setprecision(0)<<(double)i*sizeof(obuf)<<endl;
+		if(memcmp(obuf,nbuf,roldlen)!=0){
+			cout<<endl<<"Different at:"<<std::setiosflags(ios::fixed)<<std::setprecision(0)<<totalread<<endl;
 			return -1;			
 		}
 		
 		cout<<'.';
+		totalread+=roldlen;
+	}
+	if(totalread!=len){
+		return -1;
 	}
 	return 0;
 }
@@ -557,7 +563,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			return encode(argv[2],argv[3],argv[4]);
 		}
 	}
-	if(argc=4){
+	if(argc==4){
 		if(0==_tcscmp(argv[1],L"-c")){
 			return fcmp(argv[2],argv[3]);
 		}
